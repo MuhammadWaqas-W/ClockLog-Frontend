@@ -13,8 +13,6 @@ const SignInForm = (props: any) => {
   const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState(false);
   let navigate = useNavigate();
-  let token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsInByb2plY3QiOiJjbG9ja2xvZyJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.Bq6PcZBW0XKMjaLXesq90jwW1xaWuj-XHi6SXocTr2M";
   const successResult = useSelector((state: any) => state.auth.resetSuccess);
   const dispatch = useDispatch();
   const onFinish = (values: any) => {
@@ -26,59 +24,6 @@ const SignInForm = (props: any) => {
 
       if (successResult) {
         dispatch(setResetPasswordSuccess(false));
-      }
-      if (
-        values.email == "admin@clocklog.co.uk" &&
-        values.password == "Admin@123"
-      ) {
-        // just a mock object when user gets logged in.
-        let userData = {
-          email: values.email,
-          token,
-          id: "",
-          role: "Admin",
-        };
-        let stringifyData = JSON.stringify(userData);
-
-        message.success("Login success!");
-        localStorage.setItem("UserData", stringifyData);
-        navigate("/");
-      } else if (
-        values.email == "manager@clocklog.co.uk" &&
-        values.password == "Manager@123"
-      ) {
-        // just a mock object when user gets logged in.
-        let userData = {
-          email: values.email,
-          token,
-          id: "",
-          role: "Manager",
-        };
-        let stringifyData = JSON.stringify(userData);
-
-        message.success("Login success!");
-        localStorage.setItem("UserData", stringifyData);
-        navigate("/");
-      } else if (
-        values.email == "employee@clocklog.co.uk" &&
-        values.password == "Employee@123"
-      ) {
-        // just a mock object when user gets logged in.
-        let userData = {
-          email: values.email,
-          token,
-          id: "",
-          role: "Employee",
-        };
-        let stringifyData = JSON.stringify(userData);
-
-        message.success("Login success!");
-        localStorage.setItem("UserData", stringifyData);
-
-        navigate("/");
-      } else {
-        setLoading(false);
-        setFormError(true);
       }
     }, 1000);
   };
